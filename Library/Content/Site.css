@@ -36,7 +36,7 @@ textarea {
 }
 
 .body-content-index{
-   margin-top: 160px;
+   margin-top: 90px;
    padding-left: 15px;
    padding-right: 15px;
 }
@@ -44,3 +44,31 @@ textarea {
 .RegisterColor{
     color:white;
 }
+
+.jumbotronAuthor {
+background-image: url(../Content/Images/author.jpg);
+background-size: 100% 80%;
+width:  450px;
+height: 500px;
+background-position: center bottom;
+background-repeat: no-repeat;
+background-color:black;
+padding-top:5px;
+text-align:center;
+color: white;
+font-family: "Comic Sans MS", cursive, sans-serif;
+}
+
+.jumbotronBook {
+background-image: url(../Content/Images/book.jpg);
+background-size: 100% 80%;
+width:  450px;
+height: 500px;
+background-position: center bottom;
+background-repeat: no-repeat;
+background-color:black;
+padding-top:5px;
+text-align:center;
+color: white;
+}
+
