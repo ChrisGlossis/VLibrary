@@ -54,21 +54,7 @@ namespace Library.Controllers
 
 
   
-        public JsonResult PersonIdExists (string PersonId)
-        {
-            var data =  UserManager.RemovePasswordAsync  
-                user .PersonalDetails.Where(p => p.FirstName.Equals(FirstName, StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault();
-
-            if (data != null)
-            {
-                return Json("Sorry, this name already exists", JsonRequestBehavior.AllowGet);
-            }
-            else
-            {
-                return Json(true, JsonRequestBehavior.AllowGet);
-            }
-        }
-
+   
         //
         // GET: /Account/Login
         [AllowAnonymous]
