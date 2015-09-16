@@ -7,8 +7,10 @@ namespace Library.Models
 {
     public class Book
     {
-        public int BookId { get; set; }
+        public int Id { get; set; }
         public String Title { get; set; }
+
+        public string ISBN { get; set; }
 
         public String Lang { get; set; }
 
