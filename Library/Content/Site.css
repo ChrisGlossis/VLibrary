@@ -25,11 +25,20 @@ textarea {
     max-width: 280px;
 }
 
-.NavBarStyle {
-   background-color:white;
-   border-width: 3px;
-   border-color:#2F0000;
- }
+
+
+.navbar .nav > li > a {
+  
+    color: #5FC8D6;
+    
+}
+.navbar .nav > li > a:hover {
+
+    color: white;
+    background-color: #002E36;
+}
+
+
 
 .FooterStyle{
    margin-top: 160px;
