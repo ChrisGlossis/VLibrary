@@ -10,19 +10,19 @@ using Library.Models;
 
 namespace Library.Controllers
 {
-    public class ContentController : Controller
+    public class BooksController : Controller
     {
-        private LibDB db = new LibDB();
+        private LibraryContext db = new LibraryContext();
 
-        // GET: Store
+        // GET: Books
         public ActionResult Index()
         {
             var books = db.Books.Include(b => b.Author).Include(b => b.Publisher);
             return View(books.ToList());
         }
 
-        // GET: Store/Details/5
-        public ActionResult Details(int? id)
+        // GET: Books/Details/5
+        public ActionResult Details(string id)
         {
             if (id == null)
             {
@@ -36,20 +36,21 @@ namespace Library.Controllers
             return View(book);
         }
 
-        // GET: Store/Create
+        // GET: Books/Create
+        [Authorize]
         public ActionResult Create()
         {
-            ViewBag.AuthorId = new SelectList(db.Authors, "AuthorId", "Name");
-            ViewBag.PublisherId = new SelectList(db.Publishers, "PublisherId", "Name");
+            ViewBag.AuthorId = new SelectList(db.Authors, "id", "Name");
+            ViewBag.PublisherId = new SelectList(db.Publishers, "Id", "Name");
             return View();
         }
 
-        // POST: Store/Create
+        // POST: Books/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "BookId,Title,Lang,BookYear,Description,AuthorId,PublisherId")] Book book)
+        public ActionResult Create([Bind(Include = "ISBN,Title,Lang,Year,Description,Classification,Quantity,AuthorId,PublisherId")] Book book)
         {
             if (ModelState.IsValid)
             {
@@ -58,13 +59,13 @@ namespace Library.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.AuthorId = new SelectList(db.Authors, "AuthorId", "Name", book.AuthorId);
-            ViewBag.PublisherId = new SelectList(db.Publishers, "PublisherId", "Name", book.PublisherId);
+            ViewBag.AuthorId = new SelectList(db.Authors, "id", "Name", book.AuthorId);
+            ViewBag.PublisherId = new SelectList(db.Publishers, "Id", "Name", book.PublisherId);
             return View(book);
         }
 
-        // GET: Store/Edit/5
-        public ActionResult Edit(int? id)
+        // GET: Books/Edit/5
+        public ActionResult Edit(string id)
         {
             if (id == null)
             {
@@ -75,17 +76,17 @@ namespace Library.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.AuthorId = new SelectList(db.Authors, "AuthorId", "Name", book.AuthorId);
-            ViewBag.PublisherId = new SelectList(db.Publishers, "PublisherId", "Name", book.PublisherId);
+            ViewBag.AuthorId = new SelectList(db.Authors, "id", "Name", book.AuthorId);
+            ViewBag.PublisherId = new SelectList(db.Publishers, "Id", "Name", book.PublisherId);
             return View(book);
         }
 
-        // POST: Store/Edit/5
+        // POST: Books/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "BookId,Title,Lang,BookYear,Description,AuthorId,PublisherId")] Book book)
+        public ActionResult Edit([Bind(Include = "ISBN,Title,Lang,Year,Description,Classification,Quantity,AuthorId,PublisherId")] Book book)
         {
             if (ModelState.IsValid)
             {
@@ -93,13 +94,13 @@ namespace Library.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.AuthorId = new SelectList(db.Authors, "AuthorId", "Name", book.AuthorId);
-            ViewBag.PublisherId = new SelectList(db.Publishers, "PublisherId", "Name", book.PublisherId);
+            ViewBag.AuthorId = new SelectList(db.Authors, "id", "Name", book.AuthorId);
+            ViewBag.PublisherId = new SelectList(db.Publishers, "Id", "Name", book.PublisherId);
             return View(book);
         }
 
-        // GET: Store/Delete/5
-        public ActionResult Delete(int? id)
+        // GET: Books/Delete/5
+        public ActionResult Delete(string id)
         {
             if (id == null)
             {
@@ -113,10 +114,10 @@ namespace Library.Controllers
             return View(book);
         }
 
-        // POST: Store/Delete/5
+        // POST: Books/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(string id)
         {
             Book book = db.Books.Find(id);
             db.Books.Remove(book);

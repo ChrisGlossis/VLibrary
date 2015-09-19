@@ -154,7 +154,7 @@ namespace Library.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName, City = model.City, Address = model.Address,ZipCode = model.ZipCode,PersonId = model.PersonId};
+                var user = new  ApplicationUser { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName, City = model.City, Address = model.Address,ZipCode = model.ZipCode,PersonId = model.PersonId};
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

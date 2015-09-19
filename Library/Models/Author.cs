@@ -2,15 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.ComponentModel.DataAnnotations;
 
 namespace Library.Models
 {
     public class Author
     {
-        public int AuthorId { get; set; }
-        public String Name { get; set; }
-        public String LastName  { get; set; }
-        public String Details { get; set; }
-        public virtual List<Book> Books { get; set; }
+        public int id { get; set; }
+        [Required]        
+        public string Name { get; set; }
+        
+        public string Details { get; set; }
+        public virtual List<Book> Books{ get; set; }
+        
     }
 }
