@@ -1,0 +1,13 @@
+﻿@{
+
+    ViewBag.Title = "RolesManagement";
+}
+
+<h2 class="BasicColor">Mange Roles</h2>
+
+<div class="BasicColor">
+    <ul>
+        <li>@Html.ActionLink("Roles List", "RolesList", "AdminPanel", null, new { @class = "BasicLink" })</li>
+        <li>@Html.ActionLink("Manage User Role", "ManageUserRole", "AdminPanel", null, new { @class = "BasicLink" })</li>
+    </ul>
+</div>

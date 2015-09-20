@@ -50,7 +50,7 @@ textarea {
    padding-right: 15px;
 }
 
-.RegisterColor{
+.BasicColor{
     color:white;
 }
 
@@ -89,3 +89,11 @@ color: white;
     color:#5fb3e9;
 }
 
+.BasicLink{
+    color:white;
+}
+
+.BasicLink:hover{
+    color: #5FC8D6;
+    background-color: white;
+}

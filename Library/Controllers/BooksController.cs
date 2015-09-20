@@ -8,17 +8,19 @@ using System.Web;
 using System.Web.Mvc;
 using Library.Models;
 
+
 namespace Library.Controllers
 {
     public class BooksController : Controller
     {
         private LibraryContext db = new LibraryContext();
-
+        
         // GET: Books
         public ActionResult Index()
         {
             var books = db.Books.Include(b => b.Author).Include(b => b.Publisher);
             return View(books.ToList());
+            
         }
 
         // GET: Books/Details/5
@@ -64,6 +66,7 @@ namespace Library.Controllers
             return View(book);
         }
 
+        [Authorize]
         // GET: Books/Edit/5
         public ActionResult Edit(string id)
         {
@@ -84,6 +87,7 @@ namespace Library.Controllers
         // POST: Books/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ISBN,Title,Lang,Year,Description,Classification,Quantity,AuthorId,PublisherId")] Book book)
@@ -98,7 +102,7 @@ namespace Library.Controllers
             ViewBag.PublisherId = new SelectList(db.Publishers, "Id", "Name", book.PublisherId);
             return View(book);
         }
-
+        [Authorize]
         // GET: Books/Delete/5
         public ActionResult Delete(string id)
         {
@@ -113,7 +117,7 @@ namespace Library.Controllers
             }
             return View(book);
         }
-
+        [Authorize]
         // POST: Books/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
