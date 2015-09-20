@@ -4,13 +4,13 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2 class="BasicColor">Books List</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "Create",routeValues: null,htmlAttributes: new {@class = "BasicLink"})
 </p>
 <table class="table">
-    <tr>
+    <tr style=" color: black; background-color: #5fb3e9;">
         <th>
             @Html.DisplayNameFor(model => model.Author.Name)
         </th>
@@ -39,7 +39,7 @@
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
+    <tr style ="color:#E6E6E6; background-color:#1D1F21">
         <td>
             @Html.DisplayFor(modelItem => item.Author.Name)
         </td>
@@ -65,9 +65,9 @@
             @Html.DisplayFor(modelItem => item.Quantity)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ISBN }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ISBN }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ISBN })
+            @Html.ActionLink(" ", "Edit", new { id = item.ISBN }, htmlAttributes: new { @class = "glyphicon glyphicon-pencil BasicLink" }) |
+            @Html.ActionLink(" ", "Details", new { id = item.ISBN }, htmlAttributes: new { @class = "glyphicon glyphicon-zoom-in BasicLink" }) |
+            @Html.ActionLink(" ", "Delete", new { id = item.ISBN }, htmlAttributes: new { @class = "glyphicon glyphicon-trash BasicLink" })
         </td>
     </tr>
 }
