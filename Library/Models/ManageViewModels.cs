@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Library.Models
 {
@@ -83,4 +84,53 @@ namespace Library.Models
         public string SelectedProvider { get; set; }
         public ICollection<System.Web.Mvc.SelectListItem> Providers { get; set; }
     }
+
+    public class ApplicationListUsersAndRoles
+    {
+
+        private List<UserRolesViewModel> _UserAndRoles;
+        public List<UserRolesViewModel> UserAndRoles
+        {
+            get { return _UserAndRoles;}
+            private set { UserAndRoles = value; }
+        }
+        public ApplicationListUsersAndRoles() { }
+        public ApplicationListUsersAndRoles(List<UserRolesViewModel> UserAndRoles) { _UserAndRoles = UserAndRoles; }
+
+        public List<UserRolesViewModel> Get()
+        {
+            return (_UserAndRoles);
+        }
+        
+         public void Add(UserRolesViewModel Item)
+        {
+            if (_UserAndRoles == null)
+            {
+                _UserAndRoles = new List<UserRolesViewModel>();
+            }
+            _UserAndRoles.Add(Item);
+        }
+
+
+    }
+
+    public class UserRolesViewModel //: IEnumerable<UserRolesViewModel>
+    {
+        private ApplicationUser _User;
+        private IList<string> _Roles = new List<string>();
+
+        public ApplicationUser User
+        {
+            get { return _User; }
+            private set { User = value; }
+        }
+        public IList<string> Roles
+         {
+            get { return _Roles; }
+            private set { Roles = value; }
+        }
+        public UserRolesViewModel(ApplicationUser User, IList<string> Roles) { _User = User; _Roles = Roles; }
+    }
 }
+        
+    

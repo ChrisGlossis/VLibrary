@@ -1,0 +1,25 @@
+﻿@model IEnumerable<Microsoft.AspNet.Identity.EntityFramework.IdentityRole>
+
+<div class="table-responsive DefaultTableStyle">
+    <table class="table">
+        <tr>
+            <th>
+                Role Name
+            </th>
+            <th>
+                Description
+            </th>
+        </tr>
+        @foreach (var role in Model)
+        {
+            <tr>
+                <td>
+                    @role.Name
+                </td>
+                <td>
+                   
+                </td>
+            </tr>
+        }
+    </table>
+</div>

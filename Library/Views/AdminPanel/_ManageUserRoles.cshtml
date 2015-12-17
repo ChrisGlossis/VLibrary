@@ -1,0 +1,100 @@
+﻿
+@{
+    ViewBag.Title = "ManageUserRole";
+}
+
+<h2 class="BasicColor"> Manage Roles</h2>
+
+ <h2 class="BasicColor">Add Role to User</h2>
+
+@using (Ajax.BeginForm("AddRoleToUser", "AdminPanel", new AjaxOptions
+{
+    InsertionMode = InsertionMode.Replace,
+    UpdateTargetId = "ShowPartial",
+    LoadingElementId = "loader"
+}))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <p class="BasicColor">
+        Username : @Html.TextBox("UserName")
+        Role Name: @Html.DropDownList("RoleName", (IEnumerable<SelectListItem>)ViewBag.Roles, "Select ...")
+
+    </p>
+
+    <input type="submit" value="Save" />
+}
+@if (ViewBag.AddRoleToUserResultMessage != null)
+{
+    <div style="background-color:#5FC8D6;">
+        <h3>@ViewBag.AddRoleToUserResultMessage </h3>
+    </div>
+
+}
+<hr />
+<h3 class="BasicColor">Get Roles for a User</h3>
+@using (Ajax.BeginForm("GetUserRoles", "AdminPanel", new AjaxOptions
+{
+    InsertionMode = InsertionMode.Replace,
+    UpdateTargetId = "ShowPartial",
+    LoadingElementId = "loader"
+}))
+{
+    @Html.AntiForgeryToken()
+    <p class="BasicColor">
+        Username : @Html.TextBox("UserName")
+        <input type="submit" value="Get Roles for this User" />
+    </p>
+}
+
+@if (ViewBag.RolesForThisUser != null)
+{
+    <div style="background-color:#5FC8D6;">
+        <h3>Roles for this user </h3>
+        <ol>
+            @foreach (var element in ViewBag.RolesForThisUser)
+            {
+                <li>@element</li>
+            }
+        </ol>
+    </div>
+}
+
+@if (ViewBag.GetUserRolesResultMessage != null)
+{
+    <div style="background-color:#5FC8D6;">
+        <h3>@ViewBag.GetUserRolesResultMessage</h3>
+    </div>
+}
+
+<hr />
+<h3 class="BasicColor">Delete A User from a Role</h3>
+@using (Ajax.BeginForm("DeleteRoleFromUser", "AdminPanel", new AjaxOptions
+{
+    InsertionMode = InsertionMode.Replace,
+    UpdateTargetId = "ShowPartial",
+    LoadingElementId = "loader"
+}))
+{ 
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <p class="BasicColor">
+        Username : @Html.TextBox("UserName")
+        Role Name: @Html.DropDownList("RoleName", (IEnumerable<SelectListItem>)ViewBag.Roles, "Select ...")
+
+    </p>
+
+    <input type="submit" value="Delete this user from Role" />
+}
+
+@if (ViewBag.DeleteRoleFromUserResultMessage != null)
+{
+    <div style="background-color:#5FC8D6;">
+        <h3>@ViewBag.DeleteRoleFromUserResultMessage </h3>
+    </div>
+}
+
+@Scripts.Render("~/bundles/jquery")
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"> </script>

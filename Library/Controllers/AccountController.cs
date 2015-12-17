@@ -52,6 +52,10 @@ namespace Library.Controllers
             }
         }
 
+        public ApplicationUserManager GetUserManager()
+        {
+            return (_userManager);
+        }
 
   
    
@@ -158,7 +162,12 @@ namespace Library.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
+                    
+                   // await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
+
+                    string RoleName = "User";
+                  
+                    UserManager.AddToRole(user.Id, RoleName);
                     
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
@@ -166,7 +175,9 @@ namespace Library.Controllers
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                    return RedirectToAction("Index", "Home");
+                   // return RedirectToAction("Index", "Home");
+                    return RedirectToAction("ShowUsersAndRoles", "AdminPanel");
+                   
                 }
                 AddErrors(result);
             }

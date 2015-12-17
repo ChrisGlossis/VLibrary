@@ -45,7 +45,7 @@ namespace Library.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("LibraryIdentityContext", throwIfV1Schema: false)
         {
         }
 
@@ -53,5 +53,9 @@ namespace Library.Models
         {
             return new ApplicationDbContext();
         }
+
+       // public System.Data.Entity.DbSet<Library.Models.ApplicationUser> ApplicationUsers { get; set; }
+
+       // public System.Data.Entity.DbSet<Library.Models.ApplicationListUsers> IdentityRoles { get; set; }
     }
 }

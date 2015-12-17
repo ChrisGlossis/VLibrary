@@ -23,6 +23,38 @@ namespace Library.Attributes
         }
 
 
+        //public void AuthActivityAttribute(string Activity)
+        //{
+        //    User currentUser = GetCurrentUser();
+
+        //    if (GetUserActivities(currentUser).Contains(Activity))
+        //    {
+        //        // Authorized
+        //    }
+        //    else
+        //    {
+        //        // Unauthorized
+        //    }
+        //}
+
+        //public List<Activity> GetUserActivities(User currentUser)
+        //{
+        //    List<Role> roles = GetUserRoles(currentUser);
+        //    List<Activity> activities = new List<Activity>();
+
+        //    foreach (Role role in roles)
+        //    {
+        //        List<Activity> roleActivities = GetRoleActivities(role);
+        //        activities.AddRange(roleActivities);
+        //    }
+
+        //    return activities;
+
+        // If we wanted to be concise, this whole method could be written as:
+        // return GetUserRoles( currentUser ).SelectMany( x => x.GetRoleActivities( x ) );
+        //}
+       
+
         
     }
 

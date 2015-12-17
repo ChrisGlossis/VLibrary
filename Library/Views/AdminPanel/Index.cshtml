@@ -4,9 +4,16 @@
 }
 
 <h2 class="BasicColor">Admin Panel</h2>
-<div class="BasicColor">
-    <ul>
-        <li>@Html.ActionLink("Roles Management", "ManageRoles", "AdminPanel", null, new { @class = "BasicLink" })</li>
+<div>
+    <ul class="list-inline">
+        <li>@Ajax.ActionLink("Users List", "ShowUsersAndRoles", "AdminPanel", new AjaxOptions { UpdateTargetId = "ShowPartial" }, new { @class = "BasicLink", @style = " text-decoration:none" })</li>
+        <li>@Ajax.ActionLink("Roles List", "RolesList", "AdminPanel", new AjaxOptions { UpdateTargetId = "ShowPartial" }, new { @class = "BasicLink", @style = " text-decoration:none" })</li>
+        <li>@Ajax.ActionLink("Roles Managment", "ManageUserRole", "AdminPanel", new AjaxOptions { UpdateTargetId = "ShowPartial" }, new { @class = "BasicLink", @style = " text-decoration:none" })</li>
     </ul>
+    <hr />
+    <div id="ShowPartial" style="margin-top:40px"></div>
 </div>
 
+
+@Scripts.Render("~/bundles/jquery")
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"> </script>

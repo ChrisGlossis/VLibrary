@@ -15,7 +15,7 @@ namespace Library.Migrations
 
         protected override void Seed(Library.Models.LibraryDB context)
         {
-
+            
             context.Authors.AddOrUpdate(a => a.id,
                 new Author() { id = 1, Name = "Author 1" },
                 new Author() { id = 2, Name = "Author 2" },
